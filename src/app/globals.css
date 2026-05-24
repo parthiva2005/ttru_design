@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+/* ===========================================================================
+   ttru_designs / Sarah Quattrucci — Design Tokens
+   Desktop-first responsive system. Editorial-serif brand voice over warm
+   paper and deep ink. Single crimson accent reserved for CTAs.
+   =========================================================================== */
+
+@theme {
+  /* Brand color tokens */
+  --color-ink: #0e0e0e;
+  --color-ink-soft: #1a1a1a;
+  --color-ink-border: #2a2a2a;
+  --color-paper: #f4ede2;
+  --color-paper-warm: #ece3d3;
+  --color-paper-border: #e5ddd0;
+  --color-crimson: #8b1a1a;
+  --color-crimson-deep: #6e1414;
+  --color-crimson-soft: #a83232;
+  --color-muted: #6b6b6b;
+  --color-muted-soft: #8a8a8a;
+
+  /* Typography */
+  --font-display: "Cormorant Garamond", "Old Standard TT", "Times New Roman",
+    serif;
+  --font-body: "Inter", "Söhne", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  --font-mono: "JetBrains Mono", "Inter Mono", ui-monospace, monospace;
+
+  /* Spacing rhythm */
+  --spacing-section: 8rem;
+}
+
+:root {
+  color-scheme: light;
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-feature-settings: "ss01", "cv01";
+  overflow-x: hidden;
+}
+
+/* Editorial display text */
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum";
+}
+
+/* Reusable serif headings */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+/* Subtle paper grain — adds warmth to cream surfaces */
+.paper-grain {
+  position: relative;
+}
+.paper-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.15 0 0 0 0 0.13 0 0 0 0 0.10 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+/* Soft film grain on dark surfaces */
+.film-grain {
+  position: relative;
+}
+.film-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n2)' opacity='0.6'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+/* Hand-drawn divider — replaces hard CSS borders between major sections */
+.divider-hand {
+  display: block;
+  width: 100%;
+  height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 14' preserveAspectRatio='none'%3E%3Cpath d='M0,7 C120,3 200,11 320,7 C440,3 540,11 660,6 C720,4 760,9 800,7' fill='none' stroke='%232a2a2a' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  opacity: 0.35;
+}
+.divider-hand.on-ink {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 14' preserveAspectRatio='none'%3E%3Cpath d='M0,7 C120,3 200,11 320,7 C440,3 540,11 660,6 C720,4 760,9 800,7' fill='none' stroke='%23f4ede2' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E");
+  opacity: 0.25;
+}
+
+/* Selection styling — feels like marking up a manuscript */
+::selection {
+  background: var(--color-crimson);
+  color: var(--color-paper);
+}
+
+/* Visible, branded focus ring */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--color-crimson);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Custom scrollbar (desktop) */
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-paper-warm);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-border);
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ink);
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Utility: hairline rule on cream */
+.rule-paper { border-color: var(--color-paper-border); }
+.rule-ink { border-color: var(--color-ink-border); }
+
+/* Animated underline for inline links */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
