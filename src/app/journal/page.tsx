@@ -27,14 +27,8 @@ export default function JournalPage() {
     <Section variant="paper" className="!pt-32">
       <SectionHeading
         eyebrow="Journal"
-        title={
-          <>
-            Written between
-            <br />
-            <span className="italic text-[color:var(--color-crimson)]">sessions.</span>
-          </>
-        }
-        intro="Short essays on process, healed results and the studio. Published when there&apos;s something worth saying, not on a schedule."
+        title="Notes I write between sessions."
+        intro="Short posts about process, healed work, and studio life. Updated when I have something worth saying — never on a schedule."
       />
 
       {/* Featured */}
@@ -82,7 +76,7 @@ export default function JournalPage() {
                 alt=""
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover saturate-0 brightness-95 contrast-[1.08] transition-all duration-700 group-hover:scale-[1.04] group-hover:saturate-100 group-hover:brightness-100 group-hover:contrast-100"
+                className="gallery-image object-cover group-hover:scale-[1.04]"
               />
             </div>
             <span className={`font-mono text-[10px] uppercase tracking-[0.3em] ${CATEGORY_COLOR[post.category]}`}>

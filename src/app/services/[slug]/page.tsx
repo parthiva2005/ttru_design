@@ -65,7 +65,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <Section variant="paper" className="!pt-24">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
           <div className="lg:col-span-7 space-y-6">
-            <Eyebrow>The brief</Eyebrow>
+            <Eyebrow>The work</Eyebrow>
             <p className="font-display text-3xl leading-snug md:text-4xl">
               {service.description}
             </p>
@@ -74,13 +74,16 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <aside className="lg:col-span-5 self-start space-y-6 border border-[color:var(--color-paper-border)] bg-[color:var(--color-paper-warm)] p-8">
             <div>
               <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-muted)]">
-                Starts at
+                How it works
               </span>
-              <p className="mt-1 font-display text-2xl">{service.startingPrice}</p>
+              <p className="mt-1 text-base">
+                Send me a brief through the form. I read it, write back, and
+                we go from there. Quotes happen once I understand the piece.
+              </p>
             </div>
             <div>
               <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-muted)]">
-                Turnaround
+                How long it takes
               </span>
               <p className="mt-1 text-base">{service.turnaround}</p>
             </div>
@@ -90,7 +93,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               size="md"
               className="w-full"
             >
-              Start a {service.name.toLowerCase()} brief
+              Send a brief
             </ButtonLink>
           </aside>
         </div>
@@ -100,9 +103,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
       {/* PROCESS -------------------------------------------------------- */}
       <Section variant="paper" className="!pt-20">
-        <Eyebrow>Process</Eyebrow>
+        <Eyebrow>How a piece gets made</Eyebrow>
         <h2 className="mt-4 font-display text-4xl leading-tight md:text-5xl">
-          From first message to finished piece.
+          From the first email to the finished piece.
         </h2>
 
         <ol className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-[color:var(--color-paper-border)] bg-[color:var(--color-paper-border)] md:grid-cols-2 lg:grid-cols-4">
@@ -137,7 +140,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                 alt={`${service.name} example ${i + 1}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover saturate-0 brightness-95 contrast-[1.08] transition-all duration-700 group-hover:scale-[1.04] group-hover:saturate-100 group-hover:brightness-100 group-hover:contrast-100"
+                className="gallery-image object-cover group-hover:scale-[1.04]"
               />
             </div>
           ))}
@@ -148,7 +151,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <Section variant="ink">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Eyebrow>Frequently asked</Eyebrow>
+            <Eyebrow>Things people ask</Eyebrow>
             <h2 className="mt-4 font-display text-4xl leading-tight text-[color:var(--color-paper)] md:text-5xl">
               Before you write.
             </h2>
@@ -179,7 +182,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               size="md"
               className="mt-10"
             >
-              Continue to the booking form
+              Continue to the brief
             </ButtonLink>
           </div>
         </div>

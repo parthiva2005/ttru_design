@@ -7,7 +7,6 @@ import { Check, Upload, X } from "lucide-react";
 import { Button } from "@/components/button";
 import { cn } from "@/lib/cn";
 import {
-  BUDGET_OPTIONS,
   COLOR_OPTIONS,
   SERVICE_OPTIONS,
   SIZE_OPTIONS,
@@ -40,14 +39,11 @@ export function BookingForm() {
     size: "medium",
     placement: "",
     color: "black-and-grey",
-    budget: "180-400",
     timeline: "1-month",
     name: "",
     email: "",
     instagram: "",
     ageConfirmed: false,
-    referenceSlug,
-    flashSlug,
   });
   const [files, setFiles] = useState<File[]>([]);
   const [fileError, setFileError] = useState<string>("");
@@ -63,9 +59,6 @@ export function BookingForm() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params]);
-
-  const isWearable = form.service === "custom-wearables";
-  const placementLabel = isWearable ? "Garment / item" : "Body placement";
 
   function set<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -100,7 +93,12 @@ export function BookingForm() {
     e.preventDefault();
     setSubmitError("");
 
-    const parsed = bookingSchema.safeParse(form);
+    const parsed = bookingSchema.safeParse({
+      ...form,
+      // URL-only context — attached at submit, not stored in form state
+      referenceSlug,
+      flashSlug,
+    });
     if (!parsed.success) {
       const next: FieldErrors = {};
       for (const issue of parsed.error.issues) {
@@ -139,6 +137,13 @@ export function BookingForm() {
     }
   }
 
+  const isCommission = form.service === "commissions";
+  const isEmbroidery = form.service === "embroidery";
+  const placementLabel = isEmbroidery
+    ? "Garment / placement"
+    : isCommission
+      ? "Where it lives"
+      : "Body placement";
   const charCount = form.description?.length ?? 0;
   const minChars = 40;
 
@@ -150,8 +155,8 @@ export function BookingForm() {
     >
       {/* Service selector ----------------------------------------------- */}
       <Fieldset
-        legend="01 · The service"
-        hint="Pick the closest fit. The remaining fields adapt."
+        legend="01 · What you'd like"
+        hint="Pick the closest fit. The questions adapt from there."
       >
         <ChipGroup
           name="service"
@@ -172,7 +177,7 @@ export function BookingForm() {
       </Fieldset>
 
       {/* Brief ---------------------------------------------------------- */}
-      <Fieldset legend="02 · The brief">
+      <Fieldset legend="02 · The piece">
         <Field label="Project title (optional)" data-field="projectTitle">
           <input
             type="text"
@@ -185,10 +190,10 @@ export function BookingForm() {
         </Field>
 
         <Field
-          label="Tell me about the piece"
+          label="Tell me about it"
           required
           error={errors.description}
-          hint={`${charCount}/${minChars}+ characters · be specific about meaning, references, and what you want it to feel like`}
+          hint={`${charCount}/${minChars}+ characters · the more specific you are, the closer the first sketch will land`}
           data-field="description"
         >
           <textarea
@@ -197,7 +202,7 @@ export function BookingForm() {
             rows={6}
             maxLength={2000}
             className={cn(inputCx, "min-h-[160px] resize-y")}
-            placeholder="What is this piece for? What references are in your head? What do you want a friend to say when they first see it?"
+            placeholder="What is this piece for? Who's it for? Anything in particular you've been carrying around in your head?"
           />
         </Field>
 
@@ -249,7 +254,7 @@ export function BookingForm() {
       </Fieldset>
 
       {/* Details -------------------------------------------------------- */}
-      <Fieldset legend="03 · Details">
+      <Fieldset legend="03 · The specifics">
         <Field label="Size estimate" required data-field="size">
           <ChipGroup
             name="size"
@@ -272,9 +277,11 @@ export function BookingForm() {
             maxLength={120}
             className={inputCx}
             placeholder={
-              isWearable
-                ? "e.g. Vintage Levi's 501, size 28"
-                : "e.g. inner left forearm, vertical orientation"
+              isEmbroidery
+                ? "e.g. Levi's 501, waistband + back pockets"
+                : isCommission
+                  ? "e.g. framed for a hallway, A3 paper"
+                  : "e.g. inner left forearm, vertical orientation"
             }
           />
         </Field>
@@ -285,15 +292,6 @@ export function BookingForm() {
             value={form.color ?? "black-and-grey"}
             onChange={(v) => set("color", v as BookingPayload["color"])}
             options={COLOR_OPTIONS}
-          />
-        </Field>
-
-        <Field label="Budget range" required data-field="budget">
-          <ChipGroup
-            name="budget"
-            value={form.budget ?? "180-400"}
-            onChange={(v) => set("budget", v as BookingPayload["budget"])}
-            options={BUDGET_OPTIONS}
           />
         </Field>
 
@@ -308,7 +306,7 @@ export function BookingForm() {
       </Fieldset>
 
       {/* Contact -------------------------------------------------------- */}
-      <Fieldset legend="04 · You">
+      <Fieldset legend="04 · About you">
         <div className="grid gap-6 md:grid-cols-2">
           <Field label="Name" required error={errors.name} data-field="name">
             <input
@@ -351,9 +349,8 @@ export function BookingForm() {
               className="mt-0.5 h-4 w-4 accent-[color:var(--color-crimson)]"
             />
             <span>
-              I confirm that I am 18 years of age or older and understand the
-              $25 consultation deposit is non-refundable and rolls into the
-              final balance.
+              I'm 18 years of age or older, and I understand that sending a
+              brief is the start of a conversation, not a confirmed booking.
             </span>
           </label>
         </Field>
@@ -362,8 +359,8 @@ export function BookingForm() {
       {/* Submit --------------------------------------------------------- */}
       <div className="space-y-4 border-t border-[color:var(--color-paper-border)] pt-8">
         <p className="text-sm text-[color:var(--color-muted)]">
-          Submitting this form takes you to a secure checkout for the $25
-          consultation deposit. You&apos;ll hear back within 72 hours.
+          When you send this, I get an email. I'll read it personally and
+          write back within about three days.
         </p>
         <AnimatePresence>
           {submitError ? (
@@ -385,7 +382,7 @@ export function BookingForm() {
           className="w-full md:w-auto"
           disabled={submitting}
         >
-          {submitting ? "Sending…" : "Submit & continue to deposit →"}
+          {submitting ? "Sending…" : "Send the brief →"}
         </Button>
       </div>
     </form>

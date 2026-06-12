@@ -4,15 +4,14 @@
  * Every gallery, portfolio piece and service hero pulls its image src
  * from this file — change a URL here and it propagates across the site.
  *
- * Each entry has two parts:
- *   - `local`  — the eventual path on disk (under /public/work/sarah/)
- *   - `fallback` — a high-quality Unsplash photo that approximates the
- *                  same style, used until the real file is dropped in.
+ * Each `asset()` entry has two parts:
+ *   - `local`  — the path on disk under /public/work/sarah/
+ *   - `fallback` — a verified-live stand-in URL used when local files
+ *                  aren't dropped in yet.
  *
- * `asset()` returns the local path if you have set
- * NEXT_PUBLIC_USE_LOCAL_ASSETS=1, otherwise the fallback. This means the
- * site looks complete *now* with stylistic stand-ins, and flips to
- * real photography by toggling a single env var once files are saved.
+ * `asset()` returns the local path when NEXT_PUBLIC_USE_LOCAL_ASSETS=1,
+ * otherwise the fallback. This lets the site look complete *now* and
+ * flip to real photography by toggling a single env var.
  */
 
 interface AssetEntry {
@@ -29,97 +28,88 @@ function asset(entry: AssetEntry): string {
 }
 
 /* ============================================================
-   SARAH'S REAL WORK
-   Seven photos provided directly. See /public/work/sarah/README.md
+   SARAH'S REAL WORK — eight photographs supplied directly.
+   See /public/work/sarah/README.md for filenames.
    ============================================================ */
 
 export const SARAH = {
   /** Process: gloved hand + tattoo machine on a heavily-tattooed forearm */
   processMachine: asset({
-    local: "/work/sarah/process-machine.jpg",
+    local: "/work/sarah/process-machine.webp",
     fallback:
       "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1600&q=85&auto=format&fit=crop",
   }),
   /** Two hands resting — fine-line finger tattoos + French-tip nails */
   handsFinelineNails: asset({
-    local: "/work/sarah/hands-fineline-nails.jpg",
+    local: "/work/sarah/hands-fineline-nails.webp",
     fallback:
       "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1600&q=85&auto=format&fit=crop",
   }),
   /** Almond-shape nails — marbled blue + yellow + black detail */
   nailsMarbleBlue: asset({
-    local: "/work/sarah/nails-marble-blue.jpg",
+    local: "/work/sarah/nails-marble-blue.webp",
     fallback:
-      "https://images.unsplash.com/photo-1632344044143-8de8a8ce3795?w=1600&q=85&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1600&q=85&auto=format&fit=crop",
+  }),
+  /** Almond nails — dusty blue with a silver snowflake + rhinestone accent */
+  nailsBlueSnowflake: asset({
+    local: "/work/sarah/nails-blue-snowflake.png",
+    fallback:
+      "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1600&q=85&auto=format&fit=crop",
   }),
   /** Color botanical forearm sleeve: cactus, daffodil, blue rose, moth */
   botanicalColorSleeve: asset({
-    local: "/work/sarah/botanical-color-sleeve.jpg",
+    local: "/work/sarah/botanical-color-sleeve.webp",
     fallback:
-      "https://images.unsplash.com/photo-1604004215662-cdd0c277e2c4?w=1600&q=85&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1600&q=85&auto=format&fit=crop",
   }),
   /** Healed black & grey fine-line botanical — butterfly on cactus */
   botanicalBwHealed: asset({
-    local: "/work/sarah/botanical-bw-healed.jpg",
+    local: "/work/sarah/botanical-bw-healed.webp",
     fallback:
       "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=1600&q=85&auto=format&fit=crop",
   }),
   /** Avatar: The Last Airbender acrylic painting on canvas */
   paintingAvatar: asset({
-    local: "/work/sarah/painting-avatar.jpg",
+    local: "/work/sarah/painting-avatar.webp",
     fallback:
       "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1600&q=85&auto=format&fit=crop",
   }),
   /** Pencil sketch: winged figure with owl, signed P.M.C. */
   sketchAngelOwl: asset({
-    local: "/work/sarah/sketch-angel-owl.jpg",
+    local: "/work/sarah/sketch-angel-owl.png",
     fallback:
       "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1600&q=85&auto=format&fit=crop",
+  }),
+  /** Portrait of Sarah — color, teal off-shoulder dress, holding a bouquet outdoors */
+  sarahPortrait: asset({
+    local: "/work/sarah/sarah-portrait.jpeg",
+    fallback:
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1600&q=85&auto=format&fit=crop",
+  }),
+  /** Hand-embroidered daisies on the waistband of light-wash denim */
+  denimEmbroideryDaisies: asset({
+    local: "/work/sarah/denim-embroidery-daisies.webp",
+    fallback:
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=1600&q=85&auto=format&fit=crop",
+  }),
+  /** Painted BSU bear-paw and bear-head designs on grey denim back pockets */
+  denimBsuPockets: asset({
+    local: "/work/sarah/denim-bsu-pockets.webp",
+    fallback:
+      "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=1600&q=85&auto=format&fit=crop",
   }),
 } as const;
 
 /* ============================================================
-   SUPPORTING WORK
-   Curated stand-ins that match Sarah's stylistic territory.
-   Swap any of these to additional real work as it comes in.
+   SUPPORTING SLOTS
+   With the "show only real photos" policy in effect, every
+   non-SARAH slot has been retired. Anything that used to live
+   under SUPPORT.* now points at one of Sarah's real photos so
+   downstream code never reaches a stock URL.
    ============================================================ */
 
 export const SUPPORT = {
-  /* Flash designs — traditional vocabulary, fine line */
-  flashPanther: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1200&q=85&auto=format&fit=crop",
-  flashSwallow: "https://images.unsplash.com/photo-1565616424566-3a3a8e9aaae4?w=1200&q=85&auto=format&fit=crop",
-  flashScorpion: "https://images.unsplash.com/photo-1571942676516-bcab84649e44?w=1200&q=85&auto=format&fit=crop",
-  flashDagger: "https://images.unsplash.com/photo-1577084125604-1eb4c0f2a45c?w=1200&q=85&auto=format&fit=crop",
-  flashSnake: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1200&q=85&auto=format&fit=crop",
-  flashMoth: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1200&q=85&auto=format&fit=crop",
-  flashRose: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=1200&q=85&auto=format&fit=crop",
-  flashWildflower: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&q=85&auto=format&fit=crop",
-
-  /* Botanical fine-line — applied & studies */
-  botanicalApplied: "https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?w=1600&q=85&auto=format&fit=crop",
-  botanicalSketch: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1600&q=85&auto=format&fit=crop",
-  botanicalFreshShoulder: "https://images.unsplash.com/photo-1604004215662-cdd0c277e2c4?w=1600&q=85&auto=format&fit=crop",
-  botanicalLineWork: "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=1600&q=85&auto=format&fit=crop",
-
-  /* Custom wearables — denim, painted fabrics */
-  wearableJeans: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=1600&q=85&auto=format&fit=crop",
-  wearableJacket: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=1600&q=85&auto=format&fit=crop",
-  wearableCanvasBag: "https://images.unsplash.com/photo-1547949003-9792a18a2601?w=1600&q=85&auto=format&fit=crop",
-
-  /* Paintings & commissioned sketches */
-  paintingSunset: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1600&q=85&auto=format&fit=crop",
-  paintingFloralStudy: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1600&q=85&auto=format&fit=crop",
-  paintingPortrait: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=1600&q=85&auto=format&fit=crop",
-
-  /* Nail art */
-  nailsCreamCrimson: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1600&q=85&auto=format&fit=crop",
-  nailsLineDetail: "https://images.unsplash.com/photo-1632344044143-8de8a8ce3795?w=1600&q=85&auto=format&fit=crop",
-  nailsAlmondNatural: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&q=85&auto=format&fit=crop",
-
-  /* Applied / healed-result */
-  appliedPanther: "https://images.unsplash.com/photo-1604948501466-4e9c339b9c24?w=1600&q=85&auto=format&fit=crop",
-
-  /* Studio + portrait imagery */
-  studioPortrait: "https://images.unsplash.com/photo-1604004215662-cdd0c277e2c4?w=1600&q=85&auto=format&fit=crop",
-  studioDesk: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1600&q=85&auto=format&fit=crop",
+  studioPortrait: SARAH.sarahPortrait,
+  studioDesk: SARAH.processMachine,
 } as const;

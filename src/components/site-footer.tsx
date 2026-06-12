@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Mail } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { Wordmark } from "./wordmark";
 import { Button } from "./button";
 import { InstagramIcon } from "./icons";
@@ -41,8 +41,9 @@ export function SiteFooter() {
           <div className="lg:col-span-4 space-y-6">
             <Wordmark variant="light" size="md" withTagline />
             <p className="max-w-xs text-sm leading-relaxed text-[color:var(--color-paper)]/70">
-              Boutique fine-line tattoo, flash, and custom commissions. Working by
-              appointment in the Bridgewater, Massachusetts area.
+              Fine-line tattoos, custom embroidery, and custom canvas painting.
+              Working out of a small private studio at 29 Green Street,
+              Stoughton, Massachusetts.
             </p>
           </div>
 
@@ -52,7 +53,6 @@ export function SiteFooter() {
             </h4>
             <ul className="mt-5 space-y-3 text-sm">
               <li><Link className="link-underline" href="/portfolio">Portfolio</Link></li>
-              <li><Link className="link-underline" href="/flash">Flash sheet</Link></li>
               <li><Link className="link-underline" href="/services">Services</Link></li>
               <li><Link className="link-underline" href="/journal">Journal</Link></li>
               <li><Link className="link-underline" href="/about">About</Link></li>
@@ -69,19 +69,25 @@ export function SiteFooter() {
                   href="https://instagram.com/ttru_designs"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 link-underline"
+                  className="flex items-center gap-2.5"
                 >
-                  <InstagramIcon size={14} />
-                  @ttru_designs
+                  <InstagramIcon size={14} className="shrink-0" />
+                  <span className="link-underline">@ttru_designs</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:hello@sarahquattrucci.com"
-                  className="inline-flex items-center gap-2 link-underline"
+                  href="mailto:quattrucrafts@gmail.com"
+                  className="flex items-center gap-2.5"
                 >
-                  <Mail size={14} />
-                  hello@sarahquattrucci.com
+                  <Mail size={14} className="shrink-0" />
+                  <span className="link-underline break-all">quattrucrafts@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <a href="tel:+17814082354" className="flex items-center gap-2.5">
+                  <Phone size={14} className="shrink-0" />
+                  <span className="link-underline">+1 (781) 408-2354</span>
                 </a>
               </li>
               <li>
@@ -94,11 +100,11 @@ export function SiteFooter() {
 
           <div className="lg:col-span-3">
             <h4 className="font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-paper)]/50">
-              Flash drops
+              Newsletter
             </h4>
             <p className="mt-5 text-sm text-[color:var(--color-paper)]/70">
-              New flash, healed-result write-ups, and open studio dates. One email a
-              month, never more.
+              New work, healed results and open studio dates. One email a month
+              tops — usually less.
             </p>
             <form onSubmit={onSubmit} className="mt-4 flex flex-col gap-3">
               <label htmlFor="footer-email" className="sr-only">

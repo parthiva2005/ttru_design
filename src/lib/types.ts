@@ -4,11 +4,10 @@
  */
 
 export type PortfolioCategory =
-  | "flash"
   | "botanical"
   | "color"
-  | "wearables"
   | "applied"
+  | "embroidery"
   | "paintings"
   | "nails";
 
@@ -55,7 +54,6 @@ export interface FlashDesign {
   status: FlashStatus;
   sizeRange: string;
   suggestedPlacement: string;
-  priceFrom: number;
   color: "black" | "color" | "black-and-grey";
   image: string;
   alt: string;
@@ -63,7 +61,7 @@ export interface FlashDesign {
 
 export type ServiceSlug =
   | "tattoo-design"
-  | "custom-wearables"
+  | "embroidery"
   | "commissions"
   | "nail-art";
 
@@ -72,7 +70,6 @@ export interface Service {
   name: string;
   tagline: string;
   description: string;
-  startingPrice: string;
   turnaround: string;
   process: { step: string; detail: string }[];
   faqs: { q: string; a: string }[];

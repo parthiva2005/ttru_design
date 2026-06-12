@@ -3,12 +3,14 @@ import { z } from "zod";
 /**
  * Shared booking-form schema. Used by the client form for validation
  * and by the /api/bookings handler to verify incoming payloads.
+ *
+ * No budget / deposit fields — quotes happen one-on-one after the brief.
  */
 
 export const SERVICE_OPTIONS = [
   { value: "tattoo-design", label: "Tattoo Design" },
-  { value: "custom-wearables", label: "Custom Wearables" },
-  { value: "commissions", label: "Commissioned Sketch" },
+  { value: "embroidery", label: "Custom Embroidery" },
+  { value: "commissions", label: "Custom Canvas Painting" },
   { value: "nail-art", label: "Nail Art" },
 ] as const;
 
@@ -24,12 +26,6 @@ export const COLOR_OPTIONS = [
   { value: "black-only", label: "Black only" },
 ] as const;
 
-export const BUDGET_OPTIONS = [
-  { value: "180-400", label: "$180 – $400" },
-  { value: "400-900", label: "$400 – $900" },
-  { value: "900-plus", label: "$900 +" },
-] as const;
-
 export const TIMELINE_OPTIONS = [
   { value: "asap", label: "As soon as possible" },
   { value: "1-month", label: "Within 1 month" },
@@ -38,13 +34,8 @@ export const TIMELINE_OPTIONS = [
 ] as const;
 
 export const bookingSchema = z.object({
-  service: z.enum([
-    "tattoo-design",
-    "custom-wearables",
-    "commissions",
-    "nail-art",
-  ]),
-  projectTitle: z.string().max(80).optional().default(""),
+  service: z.enum(["tattoo-design", "embroidery", "commissions", "nail-art"]),
+  projectTitle: z.string().max(80).default(""),
   description: z
     .string()
     .min(40, "Tell me a little more — at least a few sentences.")
@@ -52,16 +43,17 @@ export const bookingSchema = z.object({
   size: z.enum(["small", "medium", "large"]),
   placement: z.string().min(2, "Placement is required.").max(120),
   color: z.enum(["full-color", "black-and-grey", "black-only"]),
-  budget: z.enum(["180-400", "400-900", "900-plus"]),
   timeline: z.enum(["asap", "1-month", "3-months", "flexible"]),
   name: z.string().min(2, "Name is required.").max(80),
   email: z.string().email("A valid email is required."),
-  instagram: z.string().max(80).optional().default(""),
+  instagram: z.string().max(80).default(""),
   ageConfirmed: z.literal(true, {
-    message: "You must confirm you are 18 or older.",
+    message: "Please confirm you're 18 or older.",
   }),
-  referenceSlug: z.string().max(80).optional().default(""),
-  flashSlug: z.string().max(80).optional().default(""),
+  /** Read-only context attached server-side from URL params. Not part of
+   *  the form fields the user fills in. */
+  referenceSlug: z.string().max(80).default(""),
+  flashSlug: z.string().max(80).default(""),
 });
 
 export type BookingPayload = z.infer<typeof bookingSchema>;

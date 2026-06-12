@@ -16,13 +16,8 @@ import { SARAH } from "@/lib/assets";
 export function HomeHero() {
   const reduce = useReducedMotion();
 
-  const headlineWords = [
-    "Permanent",
-    "art,",
-    "drawn",
-    "with",
-    "patience.",
-  ];
+  const HEADLINE = "Art that stays with you.";
+  const headlineWords = HEADLINE.split(" ");
 
   return (
     <section
@@ -40,12 +35,12 @@ export function HomeHero() {
             className="flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.32em] text-[color:var(--color-paper)]/55"
           >
             <span className="h-px w-10 bg-[color:var(--color-paper)]/35" />
-            Bridgewater, Massachusetts · Est. 2024
+            29 Green Street, Stoughton, MA · Est. 2024
           </motion.div>
 
           <h1 className="font-display text-[14vw] leading-[0.95] tracking-tight text-[color:var(--color-paper)] sm:text-[10vw] lg:text-[7.5vw] xl:text-[6.5vw]">
             {reduce ? (
-              <span>Permanent art, drawn with patience.</span>
+              <span>{HEADLINE}</span>
             ) : (
               <span className="block">
                 {headlineWords.map((word, i) => (
@@ -60,13 +55,7 @@ export function HomeHero() {
                     }}
                     className="inline-block pr-[0.18em]"
                   >
-                    {i === 4 ? (
-                      <span className="italic text-[color:var(--color-crimson-soft)]">
-                        {word}
-                      </span>
-                    ) : (
-                      word
-                    )}
+                    {word}
                   </motion.span>
                 ))}
               </span>
@@ -79,9 +68,9 @@ export function HomeHero() {
             transition={{ duration: 0.8, delay: 0.9 }}
             className="max-w-xl text-base leading-relaxed text-[color:var(--color-paper)]/70 md:text-lg"
           >
-            Sarah Quattrucci is a fine-line tattoo artist working in a small,
-            intentional volume — pairing traditional American flash vocabulary
-            with botanical detail to mark the stories worth keeping.
+            I'm Sarah. I draw fine-line tattoos, do custom embroidery, and paint
+            custom canvases. Working out of a private studio in Stoughton,
+            Massachusetts. Booking by brief, not by walk-in.
           </motion.p>
 
           <motion.div
@@ -91,7 +80,7 @@ export function HomeHero() {
             className="flex flex-wrap items-center gap-4"
           >
             <ButtonLink href="/book" variant="crimson" size="lg">
-              Book a Consultation
+              Start a brief
             </ButtonLink>
             <ButtonLink href="/portfolio" variant="ghost" size="lg">
               See the work

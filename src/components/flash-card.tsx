@@ -45,10 +45,10 @@ export function FlashCard({ design }: FlashCardProps) {
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
           className={cn(
-            "object-cover transition-all duration-700",
+            "object-cover",
             isTaken
-              ? "grayscale opacity-50"
-              : "saturate-0 brightness-95 contrast-[1.08] group-hover:scale-[1.05] group-hover:saturate-100 group-hover:brightness-100 group-hover:contrast-100",
+              ? "grayscale opacity-50 transition-all duration-700"
+              : "gallery-image group-hover:scale-[1.05]",
           )}
         />
         <span
@@ -72,9 +72,9 @@ export function FlashCard({ design }: FlashCardProps) {
           </div>
           <div>
             <dt className="font-mono text-[10px] uppercase tracking-[0.25em] text-[color:var(--color-paper)]/50">
-              From
+              Style
             </dt>
-            <dd>${design.priceFrom}</dd>
+            <dd className="capitalize">{design.color.replace("-", " ")}</dd>
           </div>
           <div className="col-span-2">
             <dt className="font-mono text-[10px] uppercase tracking-[0.25em] text-[color:var(--color-paper)]/50">
@@ -86,14 +86,14 @@ export function FlashCard({ design }: FlashCardProps) {
 
         {isTaken ? (
           <p className="mt-2 text-xs italic text-[color:var(--color-paper)]/40">
-            Designed once, lived once. Not available again.
+            Drawn once, lived once. Not coming back to the sheet.
           </p>
         ) : (
           <Link
             href={`/book?flash=${encodeURIComponent(design.slug)}`}
             className="mt-2 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.28em] text-[color:var(--color-paper)] hover:text-[color:var(--color-crimson-soft)] transition-colors"
           >
-            Request this flash →
+            Reserve this design →
           </Link>
         )}
       </div>

@@ -7,13 +7,11 @@ export default function NotFound() {
       <div className="space-y-8">
         <Eyebrow>404 — page not found</Eyebrow>
         <h1 className="font-display text-6xl leading-tight text-[color:var(--color-paper)] md:text-8xl">
-          That page is
-          <br />
-          <span className="italic text-[color:var(--color-crimson-soft)]">not on the wall.</span>
+          Nothing at this address.
         </h1>
         <p className="text-base leading-relaxed text-[color:var(--color-paper)]/75">
-          The page you&apos;re looking for has moved or never existed. Return home, or
-          step into the portfolio.
+          You followed a link to something I don&apos;t have. Either head back
+          home or take a look at the portfolio.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <ButtonLink href="/" variant="paper" size="md">

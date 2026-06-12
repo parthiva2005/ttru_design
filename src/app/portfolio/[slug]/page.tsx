@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 const STATUS_COPY: Record<string, string> = {
-  available: "Available as flash",
+  available: "Available to commission",
   "one-of-one": "One-of-one — placed",
   "not-for-sale": "Not for sale",
 };
@@ -151,7 +151,7 @@ export default async function PortfolioDetailPage({ params }: PageProps) {
                     alt={p.alt}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover saturate-0 brightness-95 contrast-[1.08] transition-all duration-700 group-hover:scale-[1.04] group-hover:saturate-100 group-hover:brightness-100 group-hover:contrast-100"
+                    className="gallery-image object-cover group-hover:scale-[1.04]"
                   />
                 </div>
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 text-[color:var(--color-paper)]">

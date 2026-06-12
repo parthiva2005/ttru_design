@@ -8,10 +8,6 @@ interface PortfolioCardProps {
   priority?: boolean;
   /** Layout span — overrides `piece.span` when provided. */
   span?: PortfolioSpan;
-  /** When true, keeps the image in full colour (used by detail views and
-   *  the home hero plate). Default is the unified B&W treatment with
-   *  hover-restored colour. */
-  alwaysColor?: boolean;
   className?: string;
 }
 
@@ -40,7 +36,6 @@ export function PortfolioCard({
   piece,
   priority,
   span,
-  alwaysColor = false,
   className,
 }: PortfolioCardProps) {
   const resolved: PortfolioSpan = span ?? piece.span ?? "default";
@@ -72,12 +67,7 @@ export function PortfolioCard({
               ? "(max-width: 768px) 100vw, (max-width: 1280px) 60vw, 50vw"
               : "(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
           }
-          className={cn(
-            "object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.045]",
-            // Unified black-and-white treatment — restored on hover
-            !alwaysColor &&
-              "saturate-0 brightness-95 contrast-[1.08] group-hover:saturate-100 group-hover:brightness-100 group-hover:contrast-100",
-          )}
+          className="gallery-image object-cover group-hover:scale-[1.045]"
         />
 
         {/* Vignette + reveal overlay */}

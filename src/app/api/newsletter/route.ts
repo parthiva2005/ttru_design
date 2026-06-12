@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { checkRateLimit, ipFromRequest } from "@/lib/rate-limit";
+import { escapeHtml, sendNotificationEmail } from "@/lib/email";
 
 const schema = z.object({
   email: z.string().email("Please enter a valid email."),
 });
 
-export const runtime = "edge";
+export const runtime = "nodejs"; // Resend SDK needs the Node runtime
 
 export async function POST(request: Request) {
   const ip = ipFromRequest(request);
@@ -36,12 +37,28 @@ export async function POST(request: Request) {
     );
   }
 
-  // Stub: in production this would call ConvertKit / Beehiiv with a
-  // double-opt-in confirmation. For the demo we simply acknowledge.
+  const { email } = result.data;
+
+  // Notify the studio inbox of the new subscriber.
+  const emailed = await sendNotificationEmail({
+    subject: `New newsletter signup: ${email}`,
+    replyTo: email,
+    html: `
+      <div style="max-width:520px;margin:0 auto">
+        <h2 style="font:600 18px/1.3 -apple-system,sans-serif;color:#0e0e0e">New newsletter subscriber</h2>
+        <p style="font:14px/1.6 -apple-system,sans-serif;color:#1a1a1a">
+          <strong>${escapeHtml(email)}</strong> just signed up for the newsletter
+          from the website footer.
+        </p>
+      </div>`,
+  });
+
+  if (!emailed.ok) {
+    console.warn("[newsletter] signup not emailed:", emailed.error);
+  }
+
   return NextResponse.json(
-    {
-      message: "Check your inbox to confirm your subscription.",
-    },
+    { message: "Thanks — you're on the list." },
     { status: 200 },
   );
 }

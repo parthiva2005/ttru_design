@@ -3,7 +3,7 @@ import { Section, SectionHeading } from "@/components/section";
 
 export const metadata: Metadata = {
   title: "Privacy policy",
-  description: "Privacy policy for sarahquattrucci.com.",
+  description: "Privacy policy for TTRU Designs.",
 };
 
 export default function PrivacyPage() {
@@ -28,7 +28,7 @@ export default function PrivacyPage() {
         <ul className="list-disc space-y-2 pl-6">
           <li>To respond to your inquiry and complete a booking.</li>
           <li>To send transactional emails related to your project (confirmations, schedule updates, aftercare).</li>
-          <li>If you opt in, to send occasional flash drops via the newsletter — one email a month at most.</li>
+          <li>If you opt in, to send occasional updates via the newsletter — one email a month at most.</li>
         </ul>
 
         <h2 className="pt-6 font-display text-2xl md:text-3xl">Payments</h2>
@@ -40,7 +40,7 @@ export default function PrivacyPage() {
         <h2 className="pt-6 font-display text-2xl md:text-3xl">Your rights</h2>
         <p>
           You may request access to, correction of, or deletion of any
-          personal data we hold about you by emailing hello@sarahquattrucci.com.
+          personal data we hold about you by emailing quattrucrafts@gmail.com.
         </p>
 
         <p className="pt-8 text-sm italic text-[color:var(--color-muted)]">

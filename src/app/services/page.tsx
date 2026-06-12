@@ -8,7 +8,7 @@ import { services } from "@/lib/services";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Tattoo design, custom wearables, commissioned sketches and nail art — four ways to commission a piece.",
+    "Tattoo design, custom embroidery and painted denim, custom canvas painting, and nail bookings — by appointment.",
 };
 
 export default function ServicesPage() {
@@ -16,32 +16,26 @@ export default function ServicesPage() {
     <>
       <Section variant="paper" className="!pt-32">
         <SectionHeading
-          eyebrow="Services"
-          title={
-            <>
-              Four bodies of work,
-              <br />
-              <span className="italic text-[color:var(--color-crimson)]">one steady hand.</span>
-            </>
-          }
-          intro="Tattoo design, wearable art, commissioned sketches and small nail bookings. Each is run by appointment and held to the same quiet standard."
+          eyebrow="What I make"
+          title="Four kinds of work, one studio."
+          intro="Tattoo work, custom embroidery and painted denim, custom canvas painting, and the occasional nail booking. I take all four seriously and I take them all by appointment."
         />
       </Section>
 
       <HandRule />
 
       <Section variant="paper" className="!pt-12" innerClassName="space-y-24">
-        {services.map((service, idx) => (
+        {services.map((service, idx) => {
+          // Alternate left / right per row. Image takes order 1 on even rows,
+          // order 2 on odd; text mirrors it.
+          const imageFirst = idx % 2 === 0;
+          return (
           <article
             key={service.slug}
             className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16"
           >
             <div
-              className={
-                idx % 2 === 0
-                  ? "lg:col-span-7 lg:order-1"
-                  : "lg:col-span-7 lg:order-2"
-              }
+              className={`lg:col-span-7 ${imageFirst ? "lg:order-1" : "lg:order-2"}`}
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-[color:var(--color-ink-soft)]">
                 <Image
@@ -55,14 +49,10 @@ export default function ServicesPage() {
             </div>
 
             <div
-              className={
-                idx % 2 === 0
-                  ? "lg:col-span-5 lg:order-2 flex flex-col justify-center gap-6"
-                  : "lg:col-span-5 lg:order-1 flex flex-col justify-center gap-6"
-              }
+              className={`lg:col-span-5 flex flex-col justify-center gap-6 ${imageFirst ? "lg:order-2" : "lg:order-1"}`}
             >
               <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-[color:var(--color-muted)]">
-                0{idx + 1} · {service.startingPrice.split(" · ")[0]}
+                0{idx + 1} · By appointment
               </span>
               <h2 className="font-display text-4xl leading-tight md:text-5xl">
                 {service.name}
@@ -82,12 +72,13 @@ export default function ServicesPage() {
                   href={`/book?service=${service.slug}`}
                   className="inline-flex items-center font-mono text-[11px] uppercase tracking-[0.28em] text-[color:var(--color-crimson)] link-underline"
                 >
-                  Skip ahead and book →
+                  Skip ahead and write me →
                 </Link>
               </div>
             </div>
           </article>
-        ))}
+          );
+        })}
       </Section>
     </>
   );

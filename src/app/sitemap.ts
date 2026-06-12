@@ -2,15 +2,13 @@ import type { MetadataRoute } from "next";
 import { portfolioPieces } from "@/lib/portfolio";
 import { journalPosts } from "@/lib/journal";
 import { services } from "@/lib/services";
-
-const BASE = "https://sarahquattrucci.com";
+import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const staticPaths = [
     "",
     "/portfolio",
-    "/flash",
     "/services",
     "/journal",
     "/about",
@@ -21,19 +19,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   return [
     ...staticPaths.map((p) => ({
-      url: `${BASE}${p}`,
+      url: `${SITE_URL}${p}`,
       lastModified: now,
     })),
     ...portfolioPieces.map((p) => ({
-      url: `${BASE}/portfolio/${p.slug}`,
+      url: `${SITE_URL}/portfolio/${p.slug}`,
       lastModified: now,
     })),
     ...services.map((s) => ({
-      url: `${BASE}/services/${s.slug}`,
+      url: `${SITE_URL}/services/${s.slug}`,
       lastModified: now,
     })),
     ...journalPosts.map((p) => ({
-      url: `${BASE}/journal/${p.slug}`,
+      url: `${SITE_URL}/journal/${p.slug}`,
       lastModified: new Date(p.publishedAt),
     })),
   ];

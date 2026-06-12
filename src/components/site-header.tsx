@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,7 +11,6 @@ import { cn } from "@/lib/cn";
 
 const NAV_ITEMS = [
   { href: "/portfolio", label: "Portfolio" },
-  { href: "/flash", label: "Flash" },
   { href: "/services", label: "Services" },
   { href: "/journal", label: "Journal" },
   { href: "/about", label: "About" },
@@ -44,7 +44,19 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between px-6 lg:px-12 xl:px-16">
-        <Wordmark size="sm" withTagline />
+        <div className="flex items-center gap-3">
+          <Link href="/" aria-label="Sarah Quattrucci — home" className="shrink-0">
+            <Image
+              src="/logo.png"
+              alt="TTRU Designs logo"
+              width={48}
+              height={48}
+              priority
+              className="h-12 w-12 rounded-full"
+            />
+          </Link>
+          <Wordmark size="sm" withTagline />
+        </div>
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-10" aria-label="Primary">
@@ -70,7 +82,7 @@ export function SiteHeader() {
 
         <div className="hidden lg:block">
           <ButtonLink href="/book" variant="crimson" size="sm">
-            Book a Consultation
+            Start a brief
           </ButtonLink>
         </div>
 
@@ -109,7 +121,7 @@ export function SiteHeader() {
           ))}
           <div className="pt-2">
             <ButtonLink href="/book" variant="crimson" size="md" className="w-full">
-              Book a Consultation
+              Start a brief
             </ButtonLink>
           </div>
         </nav>

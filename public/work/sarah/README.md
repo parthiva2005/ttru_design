@@ -10,13 +10,21 @@ visually consistent.
 
 | Filename | Source | Used on |
 |---|---|---|
-| `process-machine.jpg` | Image #1 — gloved hand + tattoo machine on a heavily-tattooed forearm | Home hero plate · `/services/tattoo-design` hero · process journal post |
-| `hands-fineline-nails.jpg` | Image #2 — two hands on black surface, fine-line finger tattoos + French-tip nails | `/services/nail-art` hero · portfolio piece "Fine-Line Hands & Nails" · home flash teaser |
-| `nails-marble-blue.jpg` | Image #3 — almond nails with marbled blue + yellow + black detail | `/services/nail-art` gallery · portfolio piece "Marbled Nail Set" |
-| `botanical-color-sleeve.jpg` | Image #4 — color botanical forearm sleeve (cactus, daffodil, blue rose, moth, bee + honeycomb) | Home featured · `/services/tattoo-design` gallery · portfolio piece "Wildflower Sleeve" |
-| `botanical-bw-healed.jpg` | Image #5 — black & grey fine-line botanical, healed, photographed against succulents | Home story block · portfolio piece "Healed Botanical" · journal "Three pieces, three months later" cover |
-| `painting-avatar.jpg` | Image #6 — Avatar: The Last Airbender acrylic painting on canvas | `/services/commissions` gallery · portfolio piece "Elements Study" |
-| `sketch-angel-owl.jpg` | Image #7 — pencil sketch of winged figure with owl (signed P.M.C.) | `/services/commissions` hero · portfolio piece "Angel & Owl" |
+| `process-machine.webp` | Image #1 — gloved hand + tattoo machine on a heavily-tattooed forearm | Home hero plate · `/services/tattoo-design` hero · process journal post |
+| `hands-fineline-nails.webp` | Image #2 — two hands on black surface, fine-line finger tattoos + French-tip nails | `/services/nail-art` hero · portfolio piece "Fine-Line Hands & Nails" · home flash teaser |
+| `nails-marble-blue.webp` | Image #3 — almond nails with marbled blue + yellow + black detail | `/services/nail-art` gallery · portfolio piece "Marbled Nail Set" |
+| `botanical-color-sleeve.webp` | Image #4 — color botanical forearm sleeve (cactus, daffodil, blue rose, moth, bee + honeycomb) | Home featured · `/services/tattoo-design` gallery · portfolio piece "Wildflower Sleeve" |
+| `botanical-bw-healed.webp` | Image #5 — black & grey fine-line botanical, healed, photographed against succulents | Home story block · portfolio piece "Healed Botanical" · journal "Three pieces, three months later" cover |
+| `painting-avatar.webp` | Image #6 — Avatar: The Last Airbender acrylic painting on canvas | `/services/commissions` gallery · portfolio piece "Elements Study" |
+| `sketch-angel-owl.png` | Image #7 — pencil sketch of winged figure with owl (signed P.M.C.) | `/services/commissions` hero · portfolio piece "Angel & Owl" |
+| `sarah-portrait.jpeg` | Image #8 — color portrait of Sarah outdoors in a teal off-shoulder dress, holding a bouquet | `/about` hero · home "About the artist" story block |
+| `nails-blue-snowflake.png` | Image #9 — dusty-blue almond nails with a silver snowflake + rhinestone accent | `/services/nail-art` gallery · portfolio piece "Snowflake Nail Set" |
+| `denim-embroidery-daisies.webp` | Image #10 — hand-embroidered daisies on a denim waistband | `/services/embroidery` hero · portfolio piece "Embroidered Daisy Denim" |
+| `denim-bsu-pockets.webp` | Image #11 — painted BSU bear-paw + bear-head designs on grey denim pockets | `/services/embroidery` gallery · portfolio piece "BSU Painted Denim" |
+
+> If you ever re-save these, browsers like Chrome may add a double
+> extension such as `.jpg.webp`. Trim the leading `.jpg` so the filename
+> ends in a single `.webp` or `.png` (matching the actual format).
 
 ## How to save the files
 

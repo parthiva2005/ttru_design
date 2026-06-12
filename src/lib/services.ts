@@ -1,209 +1,208 @@
 import type { Service, ServiceSlug } from "./types";
-import { SARAH, SUPPORT } from "./assets";
+import { SARAH } from "./assets";
 
 /**
- * Each service has a dedicated hero (one strong image that opens the
- * page) and a gallery (4 – 6 supporting examples). Wherever Sarah's own
- * work exists for the domain it is used; remaining slots are curated
- * stand-ins in the same stylistic territory.
+ * Service definitions.
+ *
+ * Tattoo design, custom embroidery, custom canvas painting, and nail art —
+ * each backed only by Sarah's real photographs. No stock imagery, no
+ * placeholder galleries; every visible photo is one the visitor can
+ * trust as actual work from this studio.
+ *
+ * Wearables (denim, jackets) is intentionally absent until a real
+ * photograph of that work exists under /public/work/sarah/.
  */
 export const services: Service[] = [
   {
     slug: "tattoo-design",
     name: "Tattoo Design",
-    tagline: "Custom and flash work, by appointment.",
+    tagline: "Custom work, by appointment only.",
     description:
-      "Original tattoo designs and select flash pieces. Each commission begins with a written brief, moves through two sketch rounds, and finishes with a scheduled application session.",
-    startingPrice: "From $180 · sessions $180/hour",
-    turnaround: "4 – 8 weeks from deposit to chair",
+      "I draw every piece myself, from scratch. We start with a written brief, I send you two rounds of pencils, and once the design is locked I'll put you on the schedule. Most pieces I take are between three and seven inches.",
+    turnaround:
+      "Usually four to eight weeks from brief to chair. Faster sometimes; longer if I'm booked deep.",
     process: [
       {
         step: "Brief",
         detail:
-          "Share the story, references and placement. I respond within 72 hours with a candid yes / no / counter-proposal.",
+          "Send me the story, where you want it, and any references that live in your head. I read everything personally and write back within a few days.",
       },
       {
         step: "Sketch",
         detail:
-          "Two rounds of pencil sketches with annotated revisions. We lock the design before the session is scheduled.",
+          "Two rounds of pencils. I send the first, you mark it up, I send a second. We don't move until it feels right to both of us.",
       },
       {
         step: "Session",
         detail:
-          "Single sitting for most pieces under five inches. Larger panels are scheduled across two sessions with healing time between.",
+          "Most pieces are a single sitting. Anything bigger we split across two with a few weeks of healing in between. The studio is small and quiet — bring water, eat beforehand.",
       },
       {
         step: "Aftercare",
         detail:
-          "Written aftercare card, a check-in at week one, and a free touch-up window at three months.",
+          "You'll leave with a printed aftercare card. I check in at week one and offer a free touch-up window at three months if anything needs settling.",
       },
     ],
     faqs: [
       {
-        q: "Do you copy a design I send you?",
-        a: "No — I redraw every brief from scratch in my own line. If you send a reference, I'll honour the spirit, not the strokes.",
-      },
-      {
-        q: "What's your minimum?",
-        a: "$180 covers up to roughly a 2-inch piece in single-pass line work.",
+        q: "Can I send you a design I found online?",
+        a: "You can send it as a reference and I'll honour the feeling, but I won't recreate another artist's piece. It wouldn't be fair to them and the line wouldn't be mine.",
       },
       {
         q: "Do you do colour?",
-        a: "Yes, but sparingly. Most of my colour work is one accent passage inside an otherwise black-and-grey design.",
+        a: "Sometimes. I tend to keep things mostly black and grey with one accent passage. If you want a fully saturated piece, tell me in the brief and I'll be honest about whether it's my lane.",
       },
       {
-        q: "What's the deposit?",
-        a: "$25 to hold a consultation; rolls into your final balance and is non-refundable inside seven days of your session.",
+        q: "How small can you go?",
+        a: "I'll go small if the design genuinely needs to be small. I'll talk you out of it if I think it'll lose its line in a year. We figure that out together.",
+      },
+      {
+        q: "Do you tattoo first-timers?",
+        a: "Yes, often. Tell me it's your first when you write — I'll change how I pace the session and what I send you to prepare.",
       },
     ],
-    /* HERO: process at the machine — most cinematic frame Sarah supplied */
+    // Hero: gloved hand at the machine. Gallery: the three real photos
+    // that show actual tattoo work in this studio.
     heroImage: SARAH.processMachine,
     galleryImages: [
-      SARAH.botanicalColorSleeve, // color botanical sleeve
-      SARAH.botanicalBwHealed, // healed black & grey
-      SUPPORT.botanicalApplied, // applied / fresh
-      SUPPORT.botanicalFreshShoulder, // shoulder floral
-      SUPPORT.flashPanther, // flash example
-      SUPPORT.flashSwallow,
+      SARAH.botanicalColorSleeve,
+      SARAH.botanicalBwHealed,
+      SARAH.handsFinelineNails,
     ],
   },
   {
-    slug: "custom-wearables",
-    name: "Custom Wearables",
-    tagline: "Hand-painted denim, jackets and one-of-one pieces.",
+    slug: "embroidery",
+    name: "Custom Embroidery Designs",
+    tagline: "Hand-stitched and hand-painted detail on denim.",
     description:
-      "Wearable art — denim, leather, canvas. Each commission is a one-of-one. Most projects sit between 12 and 25 hours of painted work depending on scale.",
-    startingPrice: "From $480 · most pieces $900 – $1,400",
-    turnaround: "3 – 6 weeks from approved sketch",
+      "Custom work on garments you already own or ones I source — hand-embroidered florals along a waistband, painted logos and figures across the back pockets, or a full custom panel. Each piece is one-of-one and finished entirely by hand.",
+    turnaround:
+      "Two to five weeks depending on coverage. Embroidery takes longer than paint — a full waistband of florals is a slow, patient job.",
     process: [
       {
         step: "Garment",
         detail:
-          "You supply the garment, or I source one from a short-list of trusted suppliers. Vintage denim preferred.",
+          "Send me the piece you want worked on, or tell me what you're after and I'll help you find the right denim. Worn-in, mid-weight denim takes both thread and paint best.",
       },
       {
-        step: "Composition",
+        step: "Design",
         detail:
-          "We agree on layout, panels and palette in a single sketch round.",
+          "We agree on placement and motif in a single sketch round — where the flowers run, what goes on each pocket, how much coverage you want.",
       },
       {
-        step: "Paint",
+        step: "Stitch & paint",
         detail:
-          "Hand-painted in studio with archival fabric mediums. Photographed at three points so you can follow the progress.",
+          "Embroidery is done by hand with cotton thread; painted areas use archival fabric mediums. I send progress photos as the piece comes together.",
       },
       {
-        step: "Seal & ship",
+        step: "Finish & deliver",
         detail:
-          "Heat-set, sealed, and either delivered locally or shipped insured.",
+          "Threads secured, paint heat-set and sealed. Local pickup or insured shipping anywhere in the continental US.",
       },
     ],
     faqs: [
       {
-        q: "Will it survive washing?",
-        a: "Yes. Cold inside-out wash, hang to dry. With reasonable care these pieces hold for years.",
+        q: "Can I wash it?",
+        a: "Yes — cold water, inside out, hang to dry. Don't tumble it. Embroidery and sealed paint both hold up for years with that kind of care.",
       },
       {
-        q: "Can I send my own garment?",
-        a: "Absolutely. Most clients do.",
+        q: "Embroidery, paint, or both?",
+        a: "Either or both. Embroidered florals feel soft and handmade; painted designs read bolder and graphic. Tell me the look you want and I'll recommend which fits.",
       },
       {
-        q: "Do you ship?",
-        a: "Throughout the continental US, insured.",
+        q: "Can you do a team or college design?",
+        a: "Yes — painted logos and mascots on back pockets are some of my favourite pieces to do. Send me the reference and I'll redraw it in my own hand.",
       },
     ],
-    heroImage: SUPPORT.wearableJeans,
-    galleryImages: [
-      SUPPORT.wearableJeans,
-      SUPPORT.wearableJacket,
-      SUPPORT.wearableCanvasBag,
-      SUPPORT.paintingSunset,
-    ],
+    // Hero: the hand-embroidered daisy waistband. Gallery: that piece plus
+    // the painted BSU bear-paw / bear-head pockets.
+    heroImage: SARAH.denimEmbroideryDaisies,
+    galleryImages: [SARAH.denimEmbroideryDaisies, SARAH.denimBsuPockets],
   },
   {
     slug: "commissions",
-    name: "Commissioned Sketches",
-    tagline: "Pencil and ink studies, framed or unframed.",
+    name: "Custom Canvas Painting",
+    tagline: "Acrylic on canvas, plus the occasional pencil study.",
     description:
-      "Original drawings on archival paper — portraits, botanical studies, commemorative pieces. Suitable for gifts, weddings, or simply for the wall.",
-    startingPrice: "From $240 · framed editions from $420",
-    turnaround: "2 – 4 weeks",
+      "Original paintings on stretched canvas — characters, studies, commemorative pieces — alongside hand-finished graphite drawings on paper. Painted and drawn entirely by hand. People tend to commission these for weddings, anniversaries, and as gifts that need to last.",
+    turnaround: "Two to four weeks for most pieces.",
     process: [
       {
         step: "Brief",
-        detail: "A short conversation. Reference photos welcome.",
+        detail:
+          "A short conversation by email or DM. Reference images welcome, especially if it's a portrait or a specific subject.",
       },
       {
         step: "Sketch",
         detail:
-          "One round of pencil composition with revisions before ink.",
+          "One round of pencil composition with revisions before I commit to paint.",
       },
       {
-        step: "Finish",
+        step: "Paint",
         detail:
-          "Hand-finished in ink and graphite on archival cotton paper.",
+          "Built up in acrylic on stretched canvas, or finished in graphite for drawn pieces. I sign and date the back.",
       },
       {
-        step: "Frame & deliver",
+        step: "Deliver",
         detail:
-          "Optional white-wood or black-wood frame. Hand-delivered locally; insured shipping otherwise.",
+          "Optional framing for works on paper. Local hand-delivery or insured shipping for canvases.",
       },
     ],
     faqs: [
       {
-        q: "Can I gift this?",
-        a: "Yes — gift cards are available, and I can ship directly to the recipient with a hand-written note.",
+        q: "Can this be a gift?",
+        a: "Yes — and probably more people commission them as gifts than for themselves. I can ship straight to the recipient with a card.",
       },
       {
-        q: "Do I own the original?",
-        a: "Yes, and the rights to display it. Reproductions stay with the studio.",
+        q: "Do I own the rights to the painting?",
+        a: "You own the original and the right to display it. I keep reproduction rights — meaning if I ever want to use the image in my portfolio or print run, I can.",
       },
     ],
-    /* HERO: the Angel & Owl pencil study — Sarah's strongest commission frame */
-    heroImage: SARAH.sketchAngelOwl,
-    galleryImages: [
-      SARAH.sketchAngelOwl,
-      SARAH.paintingAvatar,
-      SUPPORT.paintingFloralStudy,
-      SUPPORT.paintingPortrait,
-      SUPPORT.paintingSunset,
-    ],
+    // Hero: the elements canvas painting. Gallery: the painting plus the
+    // Angel & Owl graphite study.
+    heroImage: SARAH.paintingAvatar,
+    galleryImages: [SARAH.paintingAvatar, SARAH.sketchAngelOwl],
   },
   {
     slug: "nail-art",
     name: "Nail Art",
-    tagline: "Hand-painted sets in the house palette.",
+    tagline: "Hand-painted sets, taken occasionally.",
     description:
-      "Small bookings only. Hand-painted gel sets in cream and crimson with fine-line detail.",
-    startingPrice: "From $90 per set",
-    turnaround: "Booked one week ahead",
+      "Small, slow nail bookings — almond-shape gel sets with hand-painted detail. I take these a few times a month around the heavier work, often paired with friends getting tattooed the same day.",
+    turnaround: "Booked about a week ahead. Slots posted in the journal.",
     process: [
-      { step: "Book", detail: "Open slots posted monthly via the journal." },
+      {
+        step: "Book",
+        detail: "Open dates go up in the journal at the start of each month.",
+      },
       {
         step: "Sit",
         detail:
-          "90-minute appointment in studio. Tea and conversation included.",
+          "About 90 minutes in studio. Tea, music, and time to talk through the design without rushing.",
       },
       {
         step: "Set",
         detail:
-          "Gel-cured. Touch-up offered free within fourteen days if needed.",
+          "Gel-cured and sealed. If something pops or smudges in the first two weeks I'll fix it for free.",
       },
     ],
     faqs: [
-      { q: "How long do they last?", a: "Two to three weeks typically." },
       {
-        q: "Can I bring a reference?",
-        a: "Yes — but we'll filter it through the house palette so it reads as part of the same body of work.",
+        q: "How long do they last?",
+        a: "Two to three weeks before they start lifting in normal life. Less if you do dishes without gloves.",
+      },
+      {
+        q: "Can I bring a Pinterest reference?",
+        a: "Bring whatever you like. We'll talk through it and land somewhere that still feels like part of the same body of work.",
       },
     ],
-    /* HERO: the hands + fine-line tattoos + French set — two services in one frame */
+    // Hero: hands with fine-line tattoos + French set. Gallery: that
+    // same set and the marbled blue-and-citrine set.
     heroImage: SARAH.handsFinelineNails,
     galleryImages: [
       SARAH.handsFinelineNails,
       SARAH.nailsMarbleBlue,
-      SUPPORT.nailsCreamCrimson,
-      SUPPORT.nailsLineDetail,
-      SUPPORT.nailsAlmondNatural,
+      SARAH.nailsBlueSnowflake,
     ],
   },
 ];

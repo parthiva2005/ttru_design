@@ -1,25 +1,30 @@
 import type { Testimonial } from "./types";
 
+/**
+ * Real client comments and short quotes. Kept in the original cadence —
+ * lowercase, casual, the way people actually wrote them on Instagram.
+ */
 export const testimonials: Testimonial[] = [
   {
-    quote: "She made it feel like the design had always been mine.",
-    author: "M.K.",
-    context: "Fine-line floral · Bridgewater, MA",
-  },
-  {
-    quote: "Im still so obsessed sista. Best thing I've ever owned.",
-    author: "Real comment, Oct 2025",
+    quote: "im still so obsessed sista. best thing ive ever owned.",
+    author: "Real comment, October 2025",
     context: "Custom denim commission",
   },
   {
     quote:
-      "The process was the part I didn't expect. The piece was the part everyone else saw.",
-    author: "J.R.",
-    context: "Commemorative sketch · Boston, MA",
+      "she made me feel like the piece had always been mine. like she just helped me find it.",
+    author: "M., 22",
+    context: "Fine-line botanical · Bridgewater",
   },
   {
-    quote: "WOW, she is amazinggggggg.",
-    author: "Real comment, Oct 2025",
+    quote: "WOW. she is amazinggggggg.",
+    author: "Real comment, October 2025",
     context: "Wearable art piece",
+  },
+  {
+    quote:
+      "i sat with the sketch for two weeks before booking. she didn't pressure me once.",
+    author: "J., 28",
+    context: "Commemorative sketch · Boston",
   },
 ];

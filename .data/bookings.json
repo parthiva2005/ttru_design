@@ -1,0 +1,38 @@
+[
+  {
+    "service": "tattoo-design",
+    "projectTitle": "",
+    "description": "This is a test brief that is definitely long enough to pass validation checks for the form submission.",
+    "size": "medium",
+    "placement": "left forearm",
+    "color": "black-and-grey",
+    "timeline": "1-month",
+    "name": "Test User",
+    "email": "test@example.com",
+    "instagram": "",
+    "ageConfirmed": true,
+    "referenceSlug": "",
+    "flashSlug": "",
+    "reference": "SQ-260612-TPDA",
+    "receivedAt": "2026-06-12T13:03:50.636Z",
+    "fileCount": 0
+  },
+  {
+    "service": "tattoo-design",
+    "projectTitle": "",
+    "description": "Live email test � confirming the brief actually lands in the inbox with all the details filled in.",
+    "size": "medium",
+    "placement": "left forearm",
+    "color": "black-and-grey",
+    "timeline": "1-month",
+    "name": "Live Test",
+    "email": "enduser-test@example.com",
+    "instagram": "",
+    "ageConfirmed": true,
+    "referenceSlug": "",
+    "flashSlug": "",
+    "reference": "SQ-260612-CJCF",
+    "receivedAt": "2026-06-12T13:14:19.751Z",
+    "fileCount": 0
+  }
+]

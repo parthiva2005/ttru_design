@@ -6,7 +6,7 @@ import { portfolioPieces } from "@/lib/portfolio";
 export const metadata: Metadata = {
   title: "Portfolio",
   description:
-    "Selected fine-line tattoo, flash, custom wearable and commission work by Sarah Quattrucci. Filter by style.",
+    "Selected fine-line tattoo, custom embroidery, custom canvas painting, and nail work by Sarah Quattrucci. Filter by style.",
 };
 
 export default function PortfolioPage() {
@@ -14,14 +14,8 @@ export default function PortfolioPage() {
     <Section variant="paper" className="!pt-32">
       <SectionHeading
         eyebrow="Portfolio"
-        title={
-          <>
-            The full catalogue —
-            <br />
-            <span className="italic text-[color:var(--color-crimson)]">filterable by style.</span>
-          </>
-        }
-        intro="Flash, botanical work, custom wearables, and applied / healed-result pieces. Every piece links to the story behind it."
+        title="Everything I've made worth showing."
+        intro="Tattoo work, custom embroidery, canvas paintings, and a couple of nail sets. Filter by category, or just scroll. Click any piece to read about how it came together."
       />
       <div className="mt-16">
         <PortfolioClient pieces={portfolioPieces} />

@@ -6,7 +6,6 @@ import { PortfolioCard } from "@/components/portfolio-card";
 import { ButtonLink } from "@/components/button";
 import { Reveal } from "@/components/reveal";
 import { getFeaturedPieces } from "@/lib/portfolio";
-import { getAvailableFlash } from "@/lib/flash";
 import { getRecentPosts } from "@/lib/journal";
 import { services } from "@/lib/services";
 import { testimonials } from "@/lib/testimonials";
@@ -14,7 +13,6 @@ import { SARAH } from "@/lib/assets";
 
 export default function HomePage() {
   const featured = getFeaturedPieces(6);
-  const flash = getAvailableFlash().slice(0, 4);
   const recent = getRecentPosts(3);
 
   return (
@@ -26,17 +24,11 @@ export default function HomePage() {
         <div className="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="Selected work"
-            title={
-              <>
-                Six pieces from this year&apos;s
-                <br />
-                <span className="italic text-[color:var(--color-crimson)]">quiet shelf.</span>
-              </>
-            }
-            intro="A small, hand-picked cut of the work — flash, botanical, custom wearables and a healed forearm panther. The full catalogue lives in the portfolio."
+            title={<>Six pieces from the past year.</>}
+            intro="A small cut of what I've been working on. Tattoo work, a pencil study, a painting, a nail set. The rest of the catalogue lives in the portfolio."
           />
           <ButtonLink href="/portfolio" variant="paper" size="md" className="self-start lg:self-end">
-            Full portfolio →
+            See the full portfolio →
           </ButtonLink>
         </div>
 
@@ -54,9 +46,9 @@ export default function HomePage() {
       {/* SERVICES STRIP ------------------------------------------------------ */}
       <Section variant="paper" className="!pt-20 md:!pt-24">
         <SectionHeading
-          eyebrow="Services"
-          title="Four ways to commission."
-          intro="Whether it is a single-line wildflower or a fifteen-hour pair of painted jeans, the studio holds the same standard."
+          eyebrow="What I make"
+          title="Four kinds of work."
+          intro="Tattoo work, custom embroidery and painted denim, custom canvas painting, and a few nail bookings on the side. Whichever one finds you, the process starts the same way — a brief, a sketch, a conversation."
         />
 
         <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-[color:var(--color-paper-border)] bg-[color:var(--color-paper-border)] md:grid-cols-2 lg:grid-cols-4">
@@ -67,7 +59,7 @@ export default function HomePage() {
               className="group relative flex flex-col gap-4 bg-[color:var(--color-paper)] p-8 transition-colors hover:bg-[color:var(--color-paper-warm)]"
             >
               <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-muted)]">
-                {service.startingPrice.split(" · ")[0]}
+                By appointment
               </span>
               <h3 className="font-display text-3xl leading-tight">{service.name}</h3>
               <p className="text-sm leading-relaxed text-[color:var(--color-muted)]">
@@ -87,11 +79,11 @@ export default function HomePage() {
           <Reveal className="lg:col-span-5">
             <div className="relative aspect-[4/5] w-full overflow-hidden">
               <Image
-                src={SARAH.botanicalBwHealed}
-                alt="Healed fine-line botanical tattoo photographed outdoors — one of Sarah's signature pieces."
+                src={SARAH.sarahPortrait}
+                alt="Sarah Quattrucci — portrait outdoors in a teal off-shoulder dress, holding a bouquet of white roses and eucalyptus."
                 fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover"
+                sizes="(max-width: 1024px) 80vw, 40vw"
+                className="object-cover object-top"
               />
               <div className="pointer-events-none absolute inset-0 border border-[color:var(--color-paper)]/15" />
             </div>
@@ -100,20 +92,19 @@ export default function HomePage() {
           <div className="lg:col-span-7 flex flex-col justify-center gap-8">
             <Eyebrow>About the artist</Eyebrow>
             <h2 className="font-display text-4xl leading-tight md:text-5xl lg:text-6xl text-[color:var(--color-paper)]">
-              I work in a small, intentional volume — and I&apos;d rather draw fewer
-              pieces, more carefully.
+              I keep the schedule small so the pieces stay good.
             </h2>
             <div className="space-y-4 text-base leading-relaxed text-[color:var(--color-paper)]/75 md:text-lg">
               <p>
-                I&apos;ve been making this work since January 2024 from a studio just
-                outside Bridgewater. My line was sharpened on traditional flash —
-                panthers, swallows, scorpions — and softened by a steady diet of
-                botanical study.
+                I've been tattooing since January of 2024, out of a small studio
+                just outside Bridgewater. Before that I was drawing and painting
+                — pencil on cotton paper, acrylic on canvas, the kind of work
+                that taught me how to slow a line down.
               </p>
               <p>
-                What I sell, more than anything, is meaning. Almost every piece I
-                draw begins with a story someone wanted marked permanently. My
-                job is to listen carefully, then draw quietly.
+                What I care about is the meaning behind a piece — who it's
+                for, what they want it to remind them of, why now. Once we've
+                got that figured out, the design tends to write itself.
               </p>
             </div>
             <ButtonLink href="/about" variant="paper" size="md" className="self-start">
@@ -123,50 +114,8 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* FLASH TEASER -------------------------------------------------------- */}
-      <Section variant="paper">
-        <div className="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeading
-            eyebrow="Flash sheet"
-            title="Available now."
-            intro="Designs that have been drawn but not yet placed. Each is offered once — when it&apos;s taken, it is taken for good."
-          />
-          <ButtonLink href="/flash" variant="paper" size="md" className="self-start lg:self-end">
-            See the full sheet →
-          </ButtonLink>
-        </div>
-
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {flash.map((design) => (
-            <Link
-              key={design.slug}
-              href={`/book?flash=${encodeURIComponent(design.slug)}`}
-              className="group block bg-[color:var(--color-ink-soft)] text-[color:var(--color-paper)]"
-            >
-              <div className="relative aspect-square overflow-hidden">
-                <Image
-                  src={design.image}
-                  alt={design.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                  className="object-cover saturate-0 brightness-95 contrast-[1.08] transition-all duration-700 group-hover:scale-[1.05] group-hover:saturate-100 group-hover:brightness-100 group-hover:contrast-100"
-                />
-              </div>
-              <div className="flex items-center justify-between p-4">
-                <div className="font-display text-lg leading-tight">
-                  {design.title}
-                </div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-[color:var(--color-paper)]/70">
-                  ${design.priceFrom}+
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </Section>
-
       {/* TESTIMONIAL SLAB ---------------------------------------------------- */}
-      <Section variant="ink">
+      <Section variant="ink" className="!pt-0">
         <div className="mx-auto max-w-4xl text-center">
           <Eyebrow>What clients have said</Eyebrow>
           <div className="mt-10 grid gap-12 md:grid-cols-2">
@@ -191,8 +140,8 @@ export default function HomePage() {
         <div className="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="From the journal"
-            title="Process, healed results, studio notes."
-            intro="A slow-publication journal — short essays on the work, written between sessions."
+            title="Notes from the studio."
+            intro="Posts about the work, the people I tattoo, and the stuff I learn between sessions. Updated when there's something worth saying."
           />
           <ButtonLink href="/journal" variant="paper" size="md" className="self-start lg:self-end">
             Read the journal →
@@ -212,7 +161,7 @@ export default function HomePage() {
                   alt=""
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover saturate-0 brightness-95 contrast-[1.08] transition-all duration-700 group-hover:scale-[1.04] group-hover:saturate-100 group-hover:brightness-100 group-hover:contrast-100"
+                  className="gallery-image object-cover group-hover:scale-[1.04]"
                 />
               </div>
               <div className="space-y-2">
@@ -234,18 +183,24 @@ export default function HomePage() {
       {/* CLOSING CTA --------------------------------------------------------- */}
       <Section variant="ink" className="!py-32">
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-8 text-center">
+          <Image
+            src="/logo.png"
+            alt="TTRU Designs — SQ monogram with a tattoo machine, embroidery needle, and botanical sprig. Ink · Thread · Artistry."
+            width={150}
+            height={150}
+            priority
+            className="h-[150px] w-[150px] rounded-full shadow-lg"
+          />
           <Eyebrow>Now booking</Eyebrow>
           <h2 className="font-display text-4xl leading-tight text-[color:var(--color-paper)] md:text-6xl">
-            If you&apos;ve been waiting for the right tattoo, this is the
-            <span className="italic text-[color:var(--color-crimson-soft)]"> sign.</span>
+            If something on this site is talking to you, write to me.
           </h2>
           <p className="max-w-xl text-base leading-relaxed text-[color:var(--color-paper)]/75 md:text-lg">
-            A $25 consultation deposit holds your slot and rolls into your final
-            balance. Most consultations happen within seventy-two hours of
-            inquiry.
+            Tell me a bit about what you're thinking. I read every brief
+            personally and I'll get back to you within about three days.
           </p>
           <ButtonLink href="/book" variant="crimson" size="lg">
-            Book a Consultation
+            Start a brief
           </ButtonLink>
         </div>
       </Section>

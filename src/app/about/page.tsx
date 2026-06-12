@@ -7,15 +7,15 @@ import { SARAH } from "@/lib/assets";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Sarah Quattrucci — the practice, the philosophy, and the road to it.",
+    "Sarah Quattrucci — fine-line tattoo artist working out of the Bridgewater, Massachusetts area.",
 };
 
 const TIMELINE = [
-  { year: "2023", title: "First sketchbook of the year was a wedding present." },
-  { year: "Jan 2024", title: "Opened @ttru_designs with a single panther flash piece." },
-  { year: "Mar 2024", title: "First applied tattoo — a swallow on a best friend." },
-  { year: "Oct 2025", title: "BSU homecoming jeans commission — first piece to outgrow Instagram." },
-  { year: "2026", title: "Boutique studio launch. Booking 30 clients for the year." },
+  { year: "Late 2023", title: "Decided I was going to actually try this." },
+  { year: "January 2024", title: "Opened the @ttru_designs page. Posted my first flash drawing." },
+  { year: "March 2024", title: "Tattooed my best friend — a small swallow, my first applied piece." },
+  { year: "October 2025", title: "Finished the wildflower forearm sleeve — the piece that started the wait list for fine-line botanical work." },
+  { year: "Now", title: "Booking thirty pieces for the year out of a small private studio." },
 ] as const;
 
 export default function AboutPage() {
@@ -27,25 +27,23 @@ export default function AboutPage() {
           <div className="lg:col-span-7 space-y-8">
             <Eyebrow>About</Eyebrow>
             <h1 className="font-display text-5xl leading-[1] tracking-tight md:text-7xl lg:text-[7vw]">
-              I draw quietly,
-              <br />
-              <span className="italic text-[color:var(--color-crimson-soft)]">on purpose.</span>
+              Hi. I&apos;m Sarah.
             </h1>
             <p className="max-w-xl text-lg leading-relaxed text-[color:var(--color-paper)]/80">
-              I&apos;m Sarah Quattrucci — a fine-line tattoo artist working in a small,
-              intentional volume out of the Bridgewater, Massachusetts area. I&apos;ve been
-              drawing since I could hold a pencil and tattooing since January 2024.
+              I'm a tattoo artist working out of a small private studio near
+              Bridgewater, Massachusetts. I draw, paint, and tattoo — mostly
+              fine line, mostly by appointment, mostly slowly.
             </p>
           </div>
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/5] w-full overflow-hidden">
               <Image
-                src={SARAH.processMachine}
-                alt="Sarah at the machine — close-up of a working session."
+                src={SARAH.sarahPortrait}
+                alt="Sarah Quattrucci — portrait outdoors in a teal off-shoulder dress, holding a bouquet of white roses and eucalyptus."
                 fill
                 priority
                 sizes="(max-width: 1024px) 80vw, 40vw"
-                className="object-cover"
+                className="object-cover object-top"
               />
               <div className="pointer-events-none absolute inset-0 border border-[color:var(--color-paper)]/15" />
             </div>
@@ -59,62 +57,76 @@ export default function AboutPage() {
       <Section variant="paper" className="!pt-20" innerClassName="space-y-20">
         <article className="grid grid-cols-1 gap-10 lg:grid-cols-12">
           <h2 className="lg:col-span-4 font-display text-4xl leading-tight md:text-5xl">
-            Where it began.
+            How I got here.
           </h2>
           <div className="lg:col-span-8 space-y-5 text-base leading-relaxed md:text-lg">
             <p>
-              I grew up around drawing the way most kids grow up around television.
-              My mother kept a stack of sketchbooks within reach in every room of
-              the house. By the time I was twelve I was illustrating book covers
-              for friends. By high school I was making logos for small businesses
-              in town in exchange for cookies.
+              I've been drawing as long as I can remember. My mom kept
+              sketchbooks around the house growing up and I always had one
+              going. In middle school I started making little drawings for
+              friends — birthday cards, illustrated playlists, the kind of
+              stuff people kept on their fridges.
             </p>
             <p>
-              When I started college at Bridgewater State, I thought I&apos;d be a
-              graphic designer. What I actually became was the friend who would
-              hand-paint a denim jacket the night before a concert.
+              In high school I started painting on clothes. Jackets, jeans,
+              the occasional pair of Vans. By the time I got to Bridgewater
+              State I was painting people's homecoming outfits in exchange
+              for coffee money.
+            </p>
+            <p>
+              I picked up tattooing in late 2023. I'd been around it for
+              years through friends and through the artists I followed
+              online, and at some point it stopped feeling like a leap. I
+              started with flash on paper, then built up the chair time
+              slowly, and the work I do now is mostly fine-line — soft
+              traditional vocabulary, lots of botanical detail.
             </p>
           </div>
         </article>
 
         <article className="grid grid-cols-1 gap-10 lg:grid-cols-12">
           <h2 className="lg:col-span-4 font-display text-4xl leading-tight md:text-5xl">
-            The practice today.
+            How I work now.
           </h2>
           <div className="lg:col-span-8 space-y-5 text-base leading-relaxed md:text-lg">
             <p>
               The studio is small on purpose. I take a maximum of three new
-              clients per week — usually fewer. I keep the volume low because
-              the work I&apos;m most proud of is the work I sat with the longest.
+              clients a week and most weeks it's fewer. There's no walk-in
+              traffic, no second chair, no rush. I'd rather make thirty good
+              pieces a year than a hundred okay ones.
             </p>
             <p>
-              My line is built from American traditional flash vocabulary —
-              panthers, swallows, daggers, scorpions — slowed down and softened
-              by botanical study. The result is something neither purely
-              traditional nor purely fine-line; it is its own thing.
+              I draw every piece myself from scratch. I don't flash photos.
+              I don't run designs through an AI to speed things up. If you
+              send me a reference, I treat it as a starting point — what's
+              the feeling you want? — and then I draw something new in my
+              own line.
             </p>
             <p>
-              I do not copy. I do not flash photographs. I draw every piece from
-              scratch, in my own hand, and I show every healed result honestly.
+              I show healed photos honestly, including the bits that
+              softened more than I wanted them to. The only way to learn
+              what's actually working is to look at it three months later
+              in plain daylight.
             </p>
           </div>
         </article>
 
         <article className="grid grid-cols-1 gap-10 lg:grid-cols-12">
           <h2 className="lg:col-span-4 font-display text-4xl leading-tight md:text-5xl">
-            Where it&apos;s going.
+            Where this is going.
           </h2>
           <div className="lg:col-span-8 space-y-5 text-base leading-relaxed md:text-lg">
             <p>
-              In 2026 I&apos;m opening a permanent boutique studio in the South
-              Shore Massachusetts area — small, sun-lit, and by appointment only.
-              The studio will hold space for thirty clients a year and a quiet
-              line of original flash, prints and wearables.
+              I'm building toward a permanent boutique studio in the South
+              Shore in 2026 — small, sun-lit, by appointment only. Same
+              client volume, more space to work, room for a guest chair
+              every few months.
             </p>
             <p>
-              The goal has never been to be the biggest. The goal is to be the
-              one your friend tells you about in a hushed voice, the way you tell
-              someone about a good bookshop.
+              Past that, I don't have a five-year plan and I'm not chasing
+              one. The goal is to keep getting better at the line and to
+              keep making pieces that mean something to the people I make
+              them for. The rest takes care of itself.
             </p>
           </div>
         </article>
@@ -125,19 +137,20 @@ export default function AboutPage() {
       {/* PHILOSOPHY */}
       <Section variant="ink">
         <div className="mx-auto max-w-4xl space-y-8 text-center">
-          <Eyebrow>Philosophy</Eyebrow>
+          <Eyebrow>What I believe about tattoos</Eyebrow>
           <p className="font-display text-3xl leading-snug text-[color:var(--color-paper)] md:text-5xl">
-            &ldquo;A tattoo is a piece of writing the body keeps. My job is to make sure the
-            sentence is one you&apos;ll still want to read in twenty years.&rdquo;
+            &ldquo;A tattoo is a thing your body writes down for you. My job is to
+            help you write a sentence you&apos;ll still want to read in twenty
+            years.&rdquo;
           </p>
         </div>
       </Section>
 
       {/* TIMELINE */}
       <Section variant="paper">
-        <Eyebrow>Timeline</Eyebrow>
+        <Eyebrow>The short version</Eyebrow>
         <h2 className="mt-4 font-display text-4xl leading-tight md:text-5xl">
-          A short history.
+          A few dates that mattered.
         </h2>
 
         <ol className="mt-12 space-y-px border border-[color:var(--color-paper-border)]">
@@ -160,15 +173,13 @@ export default function AboutPage() {
       {/* CLOSING CTA */}
       <Section variant="ink" className="!py-24">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
-          <Eyebrow>Now booking 2026</Eyebrow>
+          <Eyebrow>Booking now</Eyebrow>
           <p className="font-display text-3xl text-[color:var(--color-paper)] md:text-5xl">
-            If any of this resonates,
-            <br />
-            <span className="italic text-[color:var(--color-crimson-soft)]">let&apos;s talk.</span>
+            If any of this sounds like the kind of person you&apos;d want making your tattoo, write to me.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <ButtonLink href="/book" variant="crimson" size="lg">
-              Book a Consultation
+              Start a brief
             </ButtonLink>
             <ButtonLink href="https://instagram.com/ttru_designs" variant="ghost" size="lg">
               Follow on Instagram

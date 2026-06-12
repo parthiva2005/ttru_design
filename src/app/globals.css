@@ -20,12 +20,10 @@
   --color-muted: #6b6b6b;
   --color-muted-soft: #8a8a8a;
 
-  /* Typography */
-  --font-display: "Cormorant Garamond", "Old Standard TT", "Times New Roman",
-    serif;
-  --font-body: "Inter", "Söhne", system-ui, -apple-system, BlinkMacSystemFont,
-    sans-serif;
-  --font-mono: "JetBrains Mono", "Inter Mono", ui-monospace, monospace;
+  /* Typography — one family across the entire system.
+     Roles diverge via weight and tracking, not via font. */
+  --font-stack: var(--font-sans), system-ui, -apple-system,
+    BlinkMacSystemFont, sans-serif;
 
   /* Spacing rhythm */
   --spacing-section: 8rem;
@@ -47,34 +45,36 @@ html {
 body {
   background: var(--color-paper);
   color: var(--color-ink);
-  font-family: var(--font-body);
+  font-family: var(--font-stack);
   font-size: 1rem;
   line-height: 1.6;
-  font-feature-settings: "ss01", "cv01";
+  font-weight: 400;
+  font-feature-settings: "ss01", "ss02", "cv09", "cv11";
   overflow-x: hidden;
 }
 
-/* Editorial display text */
+/* Display text — heavy weight, tight tracking */
 .font-display {
-  font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  letter-spacing: -0.035em;
 }
 
 .font-body {
-  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: -0.005em;
 }
 
+/* "Mono"-role labels — tracked-out medium weight, tabular numbers.
+   Reads like an editorial caption, not a programmer's typeface. */
 .font-mono {
-  font-family: var(--font-mono);
-  font-feature-settings: "tnum";
+  font-weight: 500;
+  font-feature-settings: "tnum", "cv11";
 }
 
-/* Reusable serif headings */
+/* Headings inherit the display weight + tracking */
 h1, h2, h3, h4 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.015em;
+  font-weight: 700;
+  letter-spacing: -0.035em;
 }
 
 /* Subtle paper grain — adds warmth to cream surfaces */
@@ -168,6 +168,24 @@ h1, h2, h3, h4 {
 /* Utility: hairline rule on cream */
 .rule-paper { border-color: var(--color-paper-border); }
 .rule-ink { border-color: var(--color-ink-border); }
+
+/* ---------------------------------------------------------------------------
+   Gallery image — the unified B&W treatment used across every portfolio
+   thumb, journal card, service gallery and home tile. Hover restores full
+   color. Apply directly on a `<Image>` inside a `group` parent.
+   --------------------------------------------------------------------------- */
+.gallery-image {
+  filter: saturate(0) brightness(0.95) contrast(1.08);
+  transition: filter 700ms ease, transform 700ms ease;
+}
+.group:hover .gallery-image,
+.gallery-image:hover {
+  filter: saturate(1) brightness(1) contrast(1);
+}
+.gallery-image.zoom-on-hover {
+  /* Pair with `group-hover:scale-[1.04]` if a card-specific scale is wanted.
+     This class only owns the colour transition. */
+}
 
 /* Animated underline for inline links */
 .link-underline {

@@ -1,15 +1,21 @@
 import { promises as fs } from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import type { BookingPayload } from "./booking-schema";
 
 /**
- * Tiny file-backed booking store. In production this becomes a Sanity
- * mutation or a row in the operational database; here it persists to
- * a JSON file under `.data/bookings.json` so submissions survive across
- * dev-server reloads without requiring any external service.
+ * Best-effort booking log.
+ *
+ * The authoritative delivery channel is email (see `sendNotificationEmail`).
+ * This file is only a convenience backup, so it is written to the OS temp
+ * directory — which is writable on serverless hosts like Vercel, unlike the
+ * project directory, which is read-only there.
+ *
+ * Every function here is defensive: a filesystem failure NEVER propagates
+ * out, because losing the backup must not fail a real submission.
  */
 
-const DATA_DIR = path.join(process.cwd(), ".data");
+const DATA_DIR = path.join(os.tmpdir(), "ttru-bookings");
 const DATA_FILE = path.join(DATA_DIR, "bookings.json");
 
 export interface StoredBooking extends BookingPayload {
@@ -18,40 +24,43 @@ export interface StoredBooking extends BookingPayload {
   fileCount: number;
 }
 
-async function ensureFile() {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  try {
-    await fs.access(DATA_FILE);
-  } catch {
-    await fs.writeFile(DATA_FILE, "[]", "utf8");
-  }
-}
-
 export async function readBookings(): Promise<StoredBooking[]> {
-  await ensureFile();
-  const raw = await fs.readFile(DATA_FILE, "utf8");
   try {
+    const raw = await fs.readFile(DATA_FILE, "utf8");
     const parsed = JSON.parse(raw) as unknown;
     return Array.isArray(parsed) ? (parsed as StoredBooking[]) : [];
   } catch {
+    // No file yet, or unreadable — treat as an empty log.
     return [];
   }
 }
 
+/**
+ * Records a booking and returns it with a generated reference. The reference
+ * is always produced; the disk write is attempted but failures are swallowed
+ * so the caller can still email and acknowledge the submission.
+ */
 export async function appendBooking(
   booking: BookingPayload,
   fileCount: number,
 ): Promise<StoredBooking> {
-  await ensureFile();
-  const existing = await readBookings();
   const stored: StoredBooking = {
     ...booking,
     reference: generateReference(),
     receivedAt: new Date().toISOString(),
     fileCount,
   };
-  existing.push(stored);
-  await fs.writeFile(DATA_FILE, JSON.stringify(existing, null, 2), "utf8");
+
+  try {
+    await fs.mkdir(DATA_DIR, { recursive: true });
+    const existing = await readBookings();
+    existing.push(stored);
+    await fs.writeFile(DATA_FILE, JSON.stringify(existing, null, 2), "utf8");
+  } catch (err) {
+    // Backup write failed (e.g. read-only FS). Not fatal — log and move on.
+    console.warn("[booking-storage] could not persist backup:", err);
+  }
+
   return stored;
 }
 
